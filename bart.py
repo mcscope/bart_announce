@@ -52,7 +52,6 @@ def main():
     departs = departure_times()
     print departs   
     relevent_departs = [depart in [5,6,7,8] for depart in departs]
-    relevent_departs = departs
 
     if any(relevent_departs):
 	saystr = random.choice(fun_strings) % min(relevent_departs)
