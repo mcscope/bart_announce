@@ -22,7 +22,7 @@ default_params = {
 
 fun_strings = [
 	"YOU! BETTER RUN TO BART. TRAIN LEAVES IN %s minutes",
-	"OLY F! LOOK AT THE TIME! DEPARTURE IN %s",
+	"OH DIGGITY IGGITY! LOOK AT THE TIME! DEPARTURE IN %s",
 	"Tee minus %s minutes until BART TRAIN",
 	"HEY YOU! STOP READING REDDIT AND GO TO FUCKING WORK! %s minutes",
 	"WHOOP WHOOP ALL HANDS WHOOP WHOOP ALL HANDS. CODE RED. BART INBOUND. LAUNCH ALL ZIGS. %s till impact. LAUNCH ALL ZIGS  WHOOP WHOOP CODE RED WHOOP WHOOP",
@@ -33,11 +33,10 @@ def departure_times():
     res = urllib.urlopen(pack(PATH, default_params))
     xml_res = res.read()
     root = etree.fromstring(xml_res)
-    minutes=root.find('.//minutes')
-    if not minutes:
+    minutes=root.findall('.//minutes')
+    if minutes is None:
 	print "BAD RESPONSE: %s" % etree.tostring(root, pretty_print=True) 
 	return []
-    
 
     int_mins = []
     for m in minutes:
@@ -51,11 +50,13 @@ def departure_times():
 
 def main():
     departs = departure_times()
-   
+    print departs   
     relevent_departs = [depart in [5,6,7,8] for depart in departs]
+    relevent_departs = departs
 
     if any(relevent_departs):
-	saystr = random.choice(fun_strings) % max(relevent_departs)
+	saystr = random.choice(fun_strings) % min(relevent_departs)
+        print saystr
 	os.system("""espeak '%s'""" % saystr)
 
 
