@@ -1,0 +1,8 @@
+<root><uri>http://api.bart.gov/api/etd.aspx?cmd=etd&amp;dir=s&amp;orig=ASHB</uri><date>03/10/2015</date>
+<time>12:31:36 AM PDT</time>
+<station><name>Ashby</name><abbr>ASHB</abbr><etd><destination>Fremont</destination><abbreviation>FRMT</abbreviation><estimate><minutes>2</minutes><platform>2</platform><direction>South</direction><length>6</length><color>ORANGE</color><hexcolor>#ff9933</hexcolor><bikeflag>1</bikeflag></estimate></etd></station><message/></root>
+
+--Return--
+> /home/christopher/bart_announcer/bart.py(25)<module>()->None
+-> import pdb; pdb.set_trace()
+(Pdb) 
